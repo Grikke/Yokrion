@@ -15,7 +15,7 @@ express.routes.use(upload.array())
 function generateRoutes(func) {
   let readRoutes = JSON.parse(fs.readFileSync("./src/routes.json", {encoding: 'utf-8'}))
   readRoutes.forEach((Control, properties) => {
-    let controlRequire = require(`../../src/Control/${Control}Control.js`)
+    let controlRequire = require(`../../../src/Control/${Control}Control.js`)
     properties.forEach(elem => {
       if (elem.count() !== 0) {
         let method = elem.method.toLowerCase().trim()
