@@ -1,3 +1,13 @@
+## v0.1.3 (15.08.2021)
+
+### Features
+
+- write readme for documentation
+
+### Fix
+
+- fix getTime giving wrong hour issue
+
 ## v0.1.2 (08.08.2021)
 
 ### Fix
