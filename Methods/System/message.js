@@ -8,7 +8,7 @@ function getDate() {
     return `${day}/${month}/${year}`
 }
 function getTime() {
-    let hours = new Date().getHours() + 2 >= 10 ? new Date().getHours() + 2 : "0" + (new Date().getHours() + 2)
+    let hours = new Date().getHours() >= 10 ? new Date().getHours() : "0" + (new Date().getHours())
     let minutes = new Date().getMinutes() >= 10 ? new Date().getMinutes(): "0" + new Date().getMinutes()
     let seconds = new Date().getSeconds() >= 10 ? new Date().getSeconds() : "0" + new Date().getSeconds()
     return `${hours}:${minutes}:${seconds}`

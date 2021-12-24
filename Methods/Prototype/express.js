@@ -27,6 +27,10 @@ express.request.isAjax = function() {
 }
 
 //# Responses Methods Prototypes #//
+express.response.render = function(view) {
+    let index = readView(view)
+    return this.send(index).status(200)
+}
 express.response.indexRender = function() {
     let index = readView("index")
     return this.send(index).status(200)
