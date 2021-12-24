@@ -1,8 +1,10 @@
-//# Create Database #//
-require("kurtion")({
+if (process.env.DB_HOST === undefined) {
+  //# Create Database #//
+  require("kurtion")({
     name: process.env.DB_NAME ?? 'ECMAData',
     location: `./${process.env.DB_NAME ?? 'ECMAData'}`
-})
+  })
+}
 
 const express = require("./Prototype/express")
 const multer = require("multer")

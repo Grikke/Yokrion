@@ -1,3 +1,9 @@
+## v0.1.5 (24.12.2021)
+
+### Fix
+
+- no longer creating Database when using DB_HOST (for mysql or other support)
+
 ## v0.1.3 (15.08.2021)
 
 ### Features

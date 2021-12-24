@@ -26,11 +26,10 @@ An object that takes the name of the control as a key and as value an array that
 If we want to call the UserControl method getUsers in /users we can write like this.
 
 ```json
-{
-    // Will call UserControl 
+{ 
     "User": [
         {
-            "name": "Get Users", // Name of route
+            "name": "Get Users",
             "path": "/users",
             "method": "GET",
             "action": "getUsers"
