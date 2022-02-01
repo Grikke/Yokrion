@@ -1,3 +1,9 @@
+## v0.1.6 (01.02.2022)
+
+### Fix
+
+- no longer upload array which prevented file upload
+
 ## v0.1.5 (24.12.2021)
 
 ### Fix
