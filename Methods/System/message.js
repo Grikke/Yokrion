@@ -1,11 +1,11 @@
 const color = require("./color");
 const fs = require("fs")
 
-function getDate() {
+function getDate(sep="/") {
     let day = new Date().getDate() >= 10 ? new Date().getDate() : "0" + new Date().getDate()
     let month = new Date().getMonth() + 1 >= 10 ? new Date().getMonth() + 1 : "0" + (new Date().getMonth() + 1)
     let year = new Date().getFullYear()
-    return `${day}/${month}/${year}`
+    return `${day}${sep}${month}${sep}${year}`
 }
 function getTime() {
     let hours = new Date().getHours() >= 10 ? new Date().getHours() : "0" + (new Date().getHours())
@@ -52,7 +52,7 @@ module.exports = {
     logError: function(msg) {
         msg = " - " + msg.trim()
         msg += " : " + getTime()
-        let errorPath = `errors/${new Date().getFullYear()}/error-${getDate()}`
+        let errorPath = `errors/${new Date().getFullYear()}/error-${getDate('-')}`
         if (!fs.existsSync("logs"))
             fs.mkdirSync("logs")
         if (!fs.existsSync("logs/errors"))

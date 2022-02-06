@@ -1,3 +1,10 @@
+## v0.1.8 (06.02.2022)
+
+### Fix
+
+- Good formate for date in error log file name
+- Fix good middleware implementation
+
 ## v0.1.7 (06.02.2022)
 
 ### Fix

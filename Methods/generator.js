@@ -21,18 +21,16 @@ function generateRoutes(func) {
     properties.forEach(elem => {
       if (elem.count() !== 0) {
         let method = elem.method.toLowerCase().trim()
-        let middle = (req, res, next) => next()
+        let middle = []
         if (typeof elem.middleware === "array" && elem.middleware.length !== 0) {
-          middle = (req, res, next) => {
-            elem.middleware.forEach((mid) => {
-              let split = mid.split('@')
-              if (split.length === 1 && split !== "")
-                require(split[0])(req, res, next)
-              else if (split.length === 2) {
-                require(split[0])[split[1]](req, res, next)
-              }
-            })
-          }
+          middle = elem.middleware.map((mid) => {
+            let split = mid.split('@')
+            if (split.length === 1 && split !== "")
+              return require(`../../../${split[0]}`)
+            else if (split.length === 2) {
+              return require(`../../../${split[0]}`)[split[1]]
+            }
+          })
         }
         express.routes[method](elem.path, elem.upload && elem.upload.type ? upload.single(elem.upload.type) : upload.none(), middle, (req, res) => {
           try {
@@ -40,7 +38,7 @@ function generateRoutes(func) {
             instanceControl[elem.action]()
           }
           catch (e) {
-            res.status(400).send({errors: 'Something went wrong'})
+            res.status(400).send({errors: 'Something went wrong, please check data validity'})
             logError(e.message)
           }
         })
