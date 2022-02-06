@@ -60,7 +60,7 @@ module.exports = {
         if (!fs.existsSync(`logs/errors/${new Date().getFullYear()}`))
             fs.mkdirSync(`logs/errors/${new Date().getFullYear()}`)
         if (!fs.existsSync(`logs/${errorPath}`))
-            fs.writeFileSync(`logs/${errorPath}`, `|| Start of Logs (Server) for ${getDate()} ||`, "utf8")
+            fs.writeFileSync(`logs/${errorPath}`, `|| Start of Error Logs for ${getDate()} ||`, "utf8")
         let content = fs.readFileSync(`logs/${errorPath}`, {encoding: "utf8"}) + "\n"
         fs.writeFileSync(`logs/${errorPath}`, content+msg, "utf8")
     },

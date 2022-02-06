@@ -25,10 +25,11 @@ function generateRoutes(func) {
         if (typeof elem.middleware === "array" && elem.middleware.length !== 0) {
           middle = elem.middleware.map((mid) => {
             let split = mid.split('@')
+            let path = mid.search('/') !== -1 ? "../../../" : ""
             if (split.length === 1 && split !== "")
-              return require(`../../../${split[0]}`)
+              return require(`${path}${split[0]}`)
             else if (split.length === 2) {
-              return require(`../../../${split[0]}`)[split[1]]
+              return require(`${path}${split[0]}`)[split[1]]
             }
           })
         }
