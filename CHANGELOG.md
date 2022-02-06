@@ -1,3 +1,10 @@
+## v0.1.9 (06.02.2022)
+
+### Fix
+
+- Correct start content for error log file
+- Middleware Support for packages
+
 ## v0.1.8 (06.02.2022)
 
 ### Fix
