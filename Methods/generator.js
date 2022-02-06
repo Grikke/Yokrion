@@ -12,8 +12,6 @@ const upload = multer()
 const fs = require('fs')
 const http = require("http").createServer(express.routes)
 
-express.routes.use(upload.array())
-
 function generateRoutes(func) {
   let readRoutes = JSON.parse(fs.readFileSync("./src/routes.json", {encoding: 'utf-8'}))
   readRoutes.forEach((Control, properties) => {
