@@ -26,22 +26,43 @@ module.exports = {
     logUpload: function(msg) {
         msg = " - " + msg.trim()
         msg += " : " + getDate() + " at " + getTime()
+        let fullPath = `logs/${new Date().getFullYear()}/uploads`
         if (!fs.existsSync("logs"))
             fs.mkdirSync("logs")
-        if (!fs.existsSync("logs/uploads"))
-            fs.writeFileSync("logs/uploads", "|| Start of Logs (Downloads) ||", "utf8")
-        let content = fs.readFileSync("logs/uploads", {encoding: "utf8"}) + "\n"
-        fs.writeFileSync("logs/uploads", content+msg, "utf8")
+        if (!fs.existsSync(`logs/${new Date().getFullYear()}`))
+            fs.mkdirSync(`logs/${new Date().getFullYear()}`)
+        if (!fs.existsSync(fullPath))
+            fs.writeFileSync(fullPath, "|| Start of Logs (Downloads) ||", "utf8")
+        let content = fs.readFileSync(fullPath, {encoding: "utf8"}) + "\n"
+        fs.writeFileSync(fullPath, content+msg, "utf8")
     },
     logServer: function(msg) {
         msg = " - " + msg.trim()
         msg += " : " + getDate() + " at " + getTime()
+        let fullPath = `logs/${new Date().getFullYear()}/server`
         if (!fs.existsSync("logs"))
             fs.mkdirSync("logs")
-        if (!fs.existsSync("logs/server"))
-            fs.writeFileSync("logs/server", "|| Start of Logs (Server) ||", "utf8")
-        let content = fs.readFileSync("logs/server", {encoding: "utf8"}) + "\n"
-        fs.writeFileSync("logs/server", content+msg, "utf8")
+        if (!fs.existsSync(`logs/${new Date().getFullYear()}`))
+            fs.mkdirSync(`logs/${new Date().getFullYear()}`)
+        if (!fs.existsSync(fullPath))
+            fs.writeFileSync(fullPath, `|| Start of Logs (Server) for ${new Date().getFullYear()} ||`, "utf8")
+        let content = fs.readFileSync(fullPath, {encoding: "utf8"}) + "\n"
+        fs.writeFileSync(fullPath, content+msg, "utf8")
+    },
+    logError: function(msg) {
+        msg = " - " + msg.trim()
+        msg += " : " + getTime()
+        let errorPath = `errors/${new Date().getFullYear()}/error-${getDate()}`
+        if (!fs.existsSync("logs"))
+            fs.mkdirSync("logs")
+        if (!fs.existsSync("logs/errors"))
+            fs.mkdirSync("logs/errors")
+        if (!fs.existsSync(`logs/errors/${new Date().getFullYear()}`))
+            fs.mkdirSync(`logs/errors/${new Date().getFullYear()}`)
+        if (!fs.existsSync(`logs/${errorPath}`))
+            fs.writeFileSync(`logs/${errorPath}`, `|| Start of Logs (Server) for ${getDate()} ||`, "utf8")
+        let content = fs.readFileSync(`logs/${errorPath}`, {encoding: "utf8"}) + "\n"
+        fs.writeFileSync(`logs/${errorPath}`, content+msg, "utf8")
     },
     color
 }

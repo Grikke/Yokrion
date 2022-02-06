@@ -12,6 +12,8 @@ const upload = multer()
 const fs = require('fs')
 const http = require("http").createServer(express.routes)
 
+const { logError } = require('./System/message')
+
 function generateRoutes(func) {
   let readRoutes = JSON.parse(fs.readFileSync("./src/routes.json", {encoding: 'utf-8'}))
   readRoutes.forEach((Control, properties) => {
@@ -19,9 +21,28 @@ function generateRoutes(func) {
     properties.forEach(elem => {
       if (elem.count() !== 0) {
         let method = elem.method.toLowerCase().trim()
-        express.routes[method](elem.path, elem.upload && elem.upload.type ? upload.single(elem.upload.type) : upload.none(), (req, res) => {
-          let instanceControl = new controlRequire(req, res, method)
-          instanceControl[elem.action]()
+        let middle = (req, res, next) => next()
+        if (typeof elem.middleware === "array" && elem.middleware.length !== 0) {
+          middle = (req, res, next) => {
+            elem.middleware.forEach((mid) => {
+              let split = mid.split('@')
+              if (split.length === 1 && split !== "")
+                require(split[0])(req, res, next)
+              else if (split.length === 2) {
+                require(split[0])[split[1]](req, res, next)
+              }
+            })
+          }
+        }
+        express.routes[method](elem.path, elem.upload && elem.upload.type ? upload.single(elem.upload.type) : upload.none(), middle, (req, res) => {
+          try {
+            let instanceControl = new controlRequire(req, res, method)
+            instanceControl[elem.action]()
+          }
+          catch (e) {
+            res.status(400).send({errors: 'Something went wrong'})
+            logError(e.message)
+          }
         })
       }
     })
