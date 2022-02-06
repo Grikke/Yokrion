@@ -1,3 +1,10 @@
+## v0.1.7 (06.02.2022)
+
+### Fix
+
+- Log for errors when calling controller method
+- Middleware support for routes
+
 ## v0.1.6 (01.02.2022)
 
 ### Fix
