@@ -3,8 +3,10 @@ const routes = require("express")();
 const bodyParser = require("body-parser")
 const cors = require('cors')
 const fs = require("fs");
+const requestIp = require('request-ip');
 const limit = "10000mb"
 
+routes.use(requestIp.mw())
 routes.use(cors(), bodyParser.json({limit}), express.urlencoded({ extended: true, limit }), express.static("public"))
 
 function readView(fileName) {
