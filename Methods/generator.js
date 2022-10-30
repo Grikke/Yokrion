@@ -10,7 +10,15 @@ const express = require("./Prototype/express")
 const multer = require("multer")
 const upload = multer()
 const fs = require('fs')
+const socketIO = require('socket.io');
 const http = require("http").createServer(express.routes)
+
+const Socket = socketIO(http, {
+  allowRequest: (req, callback) => {
+    const noOriginHeader = req.headers.origin === undefined;
+    callback(null, noOriginHeader);
+  }
+});
 
 const { logError } = require('./System/message')
 
@@ -54,5 +62,6 @@ function generateRoutes(func) {
 
 module.exports = {
   generateRoutes,
+  Socket,
   http
 }

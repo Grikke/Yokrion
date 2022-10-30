@@ -1,3 +1,27 @@
+## v0.1.14 (30.10.2022)
+
+### Fix
+
+- All Origins Allowed (CORS Problem for Socket)
+
+## v0.1.13 (30.10.2022)
+
+### Fix
+
+- Fix Exports for Generate Routes
+
+## v0.1.12 (30.10.2022)
+
+### Fix
+
+- Add socket export
+
+## v0.1.11 (30.10.2022)
+
+### Feature
+
+- Add Socket support
+
 ## v0.1.10 (23.10.2022)
 
 ### Fix

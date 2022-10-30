@@ -1,6 +1,6 @@
 {
   "name": "yokrion",
-  "version": "0.1.10",
+  "version": "0.1.14",
   "description": "Grikkian Framework for Express",
   "main": "yokrion.js",
   "dependencies": {
@@ -13,9 +13,9 @@
     "kurtion": "^0.4.0",
     "multer": "^1.4.2",
     "request-ip": "^3.3.0",
+    "socket.io": "^4.5.3",
     "uniqid": "^5.3.0"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "node test.js"
   },
