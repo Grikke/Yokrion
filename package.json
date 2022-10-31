@@ -1,6 +1,6 @@
 {
   "name": "yokrion",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "description": "Grikkian Framework for Express",
   "main": "yokrion.js",
   "dependencies": {

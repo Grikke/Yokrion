@@ -14,9 +14,10 @@ const socketIO = require('socket.io');
 const http = require("http").createServer(express.routes)
 
 const Socket = socketIO(http, {
-  allowRequest: (req, callback) => {
-    const noOriginHeader = req.headers.origin === undefined;
-    callback(null, noOriginHeader);
+  cors: {
+    origin: "*",
+    methods: ["PUT", "GET", "POST", "DELETE", "OPTIONS"],
+    credentials: false
   }
 });
 
